@@ -31,6 +31,18 @@ userSchema.pre("save", async function(next) {
     next()
 })
 
+userSchema.statics.login = async function(username, password) {
+    const user = await this.findOne({ username })
+    if (user) {
+        const match = await bcrypt.compare(password, user.password)
+        if (match) {
+            return user
+        }
+        throw Error('Incorrect password')
+    }
+    throw Error('This username does not exist in our database')
+}
+
 const User = mongoose.model("user", userSchema)
 
 export default User

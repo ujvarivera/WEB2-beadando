@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-
+import cookieParser from 'cookie-parser'
 import api from './routes/api.js'
 
 dotenv.config()
@@ -10,7 +10,7 @@ const app = express()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
+app.use(cookieParser())
 app.use('/api', api)
 
 const { DB_USER, DB_PASSWORD, DB_URL, DB_NAME, PORT } = process.env
