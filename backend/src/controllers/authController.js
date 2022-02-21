@@ -1,10 +1,10 @@
 import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
+import { SECRET_TOKEN } from '../middlewares/authMW.js'
 
-const secretToken = 'secret token'
 const expires = '1h'
 const newToken = (id) => {
-    return jwt.sign({ id }, secretToken, {
+    return jwt.sign({ id }, SECRET_TOKEN, {
         expiresIn: expires
     })
 }
@@ -26,8 +26,8 @@ export const register = async(req, res) => {
             httpOnly: true,
             maxAge: 3600
         }) // 3600s: 1 hour
-        res.status(201).json(user)
-        console.log({token})
+        res.status(201).json({ id: user._id })
+        console.log("You register was successful")
     }
     catch (error) {
         if (error.code === 11000) {
@@ -35,7 +35,7 @@ export const register = async(req, res) => {
             return
         } //duplicate key error 
 
-        res.status(400).json({message: error.message})
+        res.status(400).json({ message: error.message })
     }
 }
 
@@ -44,11 +44,33 @@ export const login = async(req, res) => {
     
     try {
         const user = await User.login(username, password)
-        res.status(200).json(user)
+        const token = newToken(user._id)
+        res.cookie('jwt', token, {
+            httpOnly: true,
+            maxAge: 3600
+        }) // 3600s: 1 hour
+        res.status(200).json({ token })
         console.log('successful login')
     }
     catch (error) {
-        res.status(400).json({})
+        res.status(400).json({ message: error.message })
         console.log('unsuccessful login')
     }
+}
+
+export const logout = (req, res) => {
+    /* ??
+    res.cookie('jwt', '', {maxAge: 1})
+    res.redirect('/api/login')
+    */
+
+   res.clearCookie('jwt')
+   res.redirect('/api/login')
+   /*
+   res.status(200).json({ 
+       success: true,
+       message: 'you succesfully logged out'
+    })
+    */
+
 }

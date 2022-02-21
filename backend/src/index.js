@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import api from './routes/api.js'
+import authMW from './middlewares/authMW.js'
 
 dotenv.config()
 
@@ -45,3 +46,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.info(`Server listening on localhost:${PORT}`)
 })
+
