@@ -9,24 +9,11 @@ const newToken = (id) => {
     })
 }
 
-export const signupGet = (req, res) => {
-    res.send('Sign up')
-}
-
-export const loginGet = (req, res) => {
-    res.send('Log in')
-}
-
 export const register = async(req, res) => {
     const {username, password} = req.body
     try {
         const user = await User.create({username, password})
-        const token = newToken(user._id)
-        res.cookie('jwt', token, {
-            httpOnly: true,
-            maxAge: 3600
-        }) // 3600s: 1 hour
-        res.status(201).json({ id: user._id })
+        res.status(201).json({ userId: user._id })
         console.log("You register was successful")
     }
     catch (error) {
@@ -46,9 +33,8 @@ export const login = async(req, res) => {
         const user = await User.login(username, password)
         const token = newToken(user._id)
         res.cookie('jwt', token, {
-            httpOnly: true,
-            maxAge: 3600
-        }) // 3600s: 1 hour
+            httpOnly: true
+        }) 
         res.status(200).json({ token })
         console.log('successful login')
     }
@@ -59,18 +45,13 @@ export const login = async(req, res) => {
 }
 
 export const logout = (req, res) => {
-    /* ??
+    /*
     res.cookie('jwt', '', {maxAge: 1})
     res.redirect('/api/login')
     */
 
+    /*
    res.clearCookie('jwt')
    res.redirect('/api/login')
-   /*
-   res.status(200).json({ 
-       success: true,
-       message: 'you succesfully logged out'
-    })
-    */
-
+   */
 }

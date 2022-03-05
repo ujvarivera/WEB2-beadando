@@ -7,16 +7,19 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: [true, "Please type a username in"],
         lowercase: true,
-        trim: true
+        trim: true,
+        index: true
     },
     password: {
         type: String,
         required: [true, "Please write in a password"],
-        minlength: [4, "Your password should be at least 4 characters long"]
+        minlength: [4, "Your password should be at least 4 characters long"],
+        select: false
     },
     registered: { 
         type: Date, 
-        default: Date.now 
+        default: Date.now,
+        select: false
     }
 })
 
@@ -32,7 +35,7 @@ userSchema.pre("save", async function(next) {
 })
 
 userSchema.statics.login = async function(username, password) {
-    const user = await this.findOne({ username })
+    const user = await this.findOne({ username }).select('+password')
     if (user) {
         const match = await bcrypt.compare(password, user.password)
         if (match) {
