@@ -13,7 +13,7 @@ export const register = async(req, res) => {
     const {username, password} = req.body
     try {
         const user = await User.create({username, password})
-        res.status(201).json({ userId: user._id })
+        res.status(201).json({id: user.id })
         console.log("You register was successful")
     }
     catch (error) {
@@ -31,7 +31,7 @@ export const login = async(req, res) => {
     
     try {
         const user = await User.login(username, password)
-        const token = newToken(user._id)
+        const token = newToken(user.id)
         res.cookie('jwt', token, {
             httpOnly: true
         }) 
