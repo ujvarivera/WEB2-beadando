@@ -10,6 +10,8 @@ import ErrorBoundary from "./components/ErrorBoundary"
 import SearchingMeals from "./components/SearchingMeals"
 import Login from './components/Login'
 import Register from './components/Register'
+import Profile from './components/Profile'
+import Posts from './components/Posts'
 
 const App = () => {
   const [connected, setConnected] = useState(false)
@@ -43,18 +45,14 @@ const App = () => {
         password,
       })
       setLoginErrorMessage('OK')
-      window.localStorage.setItem('jwt', data.token)
+      //axios.defaults.headers.authorization = `Bearer ${data.token}` // ????
+      window.localStorage.setItem('jwt', data.token) 
       history.push('/profile')
     } catch (error) {
       setLoginErrorMessage(error.response.data.message)
     }
   }
 
-  const logout = async() => {
-    window.localStorage.removeItem('jwt')
-    window.location.reload(true)
-    console.log('you logged out successfully')
-  }
 
   const register = async() => {
     try {
@@ -70,12 +68,12 @@ const App = () => {
     } catch (error) {
       setRegisterErrorMessage(error.response.data.message)
     }
-
   }
 
   useEffect(() => {
     const initialize = async () => {
       const token = window.localStorage.getItem('jwt')
+      //axios.defaults.headers.authorization = `Bearer ${token}` //????
       if (token) {
        setInit(true)
      }
@@ -104,23 +102,19 @@ const App = () => {
           <Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} login={login} error={loginErrorMessage}/>
         </Route>
 
-        <Route exact path="/logout">
-          <button className="logout-button" onClick={logout}>logout</button>
-        </Route>
-
         <Route exact path="/register">
           <Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} register={register} error={registerErrorMessage}/>
         </Route>
 
         <Route exact path="/posts">
           {init ? 
-            <h1 className='proba'>Posts</h1> 
+            <Posts /> 
             : <Redirect from="/posts" to="/login" />}
         </Route>
 
         <Route exact path="/profile">
             {init ? 
-              <h1 className='proba'>Hello {username}</h1> 
+              <Profile username={username}/> 
               : <Redirect from="/profile" to="/login" />
               }
           </Route>

@@ -20,15 +20,9 @@ export default function Header() {
       <NavLink to="/posts" exact activeStyle={selectedStyle}>
         Forum
       </NavLink>
-      { true ? 
-      (<NavLink to="/profile" exact activeStyle={selectedStyle}>
+      <NavLink to="/profile" exact activeStyle={selectedStyle}>
         Profile
-      </NavLink>) :
-      (<NavLink to="/login" exact activeStyle={selectedStyle}>
-          Login
-      </NavLink>)
-      }
-      
+      </NavLink>
     </div>
   );
 }
