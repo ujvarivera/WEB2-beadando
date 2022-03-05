@@ -48,6 +48,7 @@ const App = () => {
 
   const logout = async() => {
     window.localStorage.removeItem('jwt')
+    window.location.reload(true)
     console.log('you logged out successfully')
   }
 
@@ -104,6 +105,14 @@ const App = () => {
         <Route exact path="/register">
           <Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} register={register} error={registerErrorMessage}/>
         </Route>
+
+        <Route exact path="/posts">
+          {init ? <h1 className='proba'>Posts</h1> : <h1 className='proba'>not logged in</h1>}
+        </Route>
+
+        <Route exact path="/profile">
+            {init ? <h1 className='proba'>Hello {username}</h1> : <h1 className='proba'>not logged in</h1>}
+          </Route>
 
         <Redirect from="*" to="/" />
 
