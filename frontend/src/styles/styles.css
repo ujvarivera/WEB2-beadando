@@ -141,7 +141,13 @@
 }
 
 .login-text,
-.register-text {
+.register-text,
+.proba {
   margin-top: 200px;
   text-align: center;
+}
+
+/* error messages */
+.incorrect {
+  color: red;
 }

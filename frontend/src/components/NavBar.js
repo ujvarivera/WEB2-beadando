@@ -5,6 +5,7 @@ const selectedStyle = {
 };
 
 export default function Header() {
+
   return (
     <div className="navbar">
       <NavLink to="/">
@@ -16,12 +17,18 @@ export default function Header() {
       <NavLink to="/favourites" exact activeStyle={selectedStyle}>
         Favourites
       </NavLink>
-      <NavLink to="/forum" exact activeStyle={selectedStyle}>
+      <NavLink to="/posts" exact activeStyle={selectedStyle}>
         Forum
       </NavLink>
-      <NavLink to="/login" exact activeStyle={selectedStyle}>
+      { true ? 
+      (<NavLink to="/profile" exact activeStyle={selectedStyle}>
         Profile
-      </NavLink>
+      </NavLink>) :
+      (<NavLink to="/login" exact activeStyle={selectedStyle}>
+          Login
+      </NavLink>)
+      }
+      
     </div>
   );
 }
