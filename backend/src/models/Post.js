@@ -3,10 +3,11 @@ import mongoose from 'mongoose'
 const postSchema = new mongoose.Schema({
     title: { 
         type: String, 
-        required: true 
+        required: [true, 'Please write a title in'] 
     },
     content: { 
-        type: String 
+        type: String ,
+        required: [true, 'Content is missing']
     },
     createdAt: { 
         type: Date, 

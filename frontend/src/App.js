@@ -12,6 +12,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile'
 import Posts from './components/Posts'
+import AllPosts from './components/AllPosts'
 
 const App = () => {
   const [connected, setConnected] = useState(false)
@@ -45,14 +46,14 @@ const App = () => {
         password,
       })
       setLoginErrorMessage('OK')
-      //axios.defaults.headers.authorization = `Bearer ${data.token}` // ????
+      axios.defaults.headers.authorization = `Bearer ${data.token}` // ????
+      //axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
       window.localStorage.setItem('jwt', data.token) 
       history.push('/profile')
     } catch (error) {
       setLoginErrorMessage(error.response.data.message)
     }
   }
-
 
   const register = async() => {
     try {
@@ -73,7 +74,8 @@ const App = () => {
   useEffect(() => {
     const initialize = async () => {
       const token = window.localStorage.getItem('jwt')
-      //axios.defaults.headers.authorization = `Bearer ${token}` //????
+      axios.defaults.headers.authorization = `Bearer ${token}` //????
+      //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       if (token) {
        setInit(true)
      }
@@ -110,6 +112,12 @@ const App = () => {
           {init ? 
             <Posts /> 
             : <Redirect from="/posts" to="/login" />}
+        </Route>
+
+        <Route exact path="/allposts">
+          {init && 
+            <AllPosts /> 
+            }
         </Route>
 
         <Route exact path="/profile">

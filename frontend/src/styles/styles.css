@@ -76,9 +76,8 @@
 
 .meal-container {
   float: left;
-  width: 33.33%;
-  padding: 5px;
-  margin: 50px;
+  width: 30%;
+  margin: 25px;
 
   display: flex;
   flex-direction: column;
@@ -89,10 +88,12 @@
   height: auto;
 }
 
+
 .meal-description,
 .favourites h1 {
   text-align: center;
 }
+
 
 .meal-description h1 {
   color: red;
@@ -150,4 +151,15 @@
 /* error messages */
 .incorrect {
   color: red;
+}
+
+/* Posts*/
+
+.post-frame,
+.new-post {
+  border:2px solid red;
+  width: 600px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
