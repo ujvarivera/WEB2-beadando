@@ -5,6 +5,10 @@ import NewPost from './NewPost'
 
 export default function Posts() {
     const [myPosts, setMyPosts] = useState([])
+    const [isUpdating, setIsUpdating] = useState(false)
+    const [newTitle, setNewTitle] = useState('')
+    const [newContent, setNewContent] = useState('')
+    const [postId, setPostId] = useState('')
 
     const getMyPosts = async() => {
         try {
@@ -22,7 +26,27 @@ export default function Posts() {
             alert("post is deleted")
             window.location.reload(true)
         } catch (error) {
-            console.log(error.response.data.message)
+            alert(error.response.data.message)
+        }
+    }
+
+    const toUpdateMode = (id) => {
+        setIsUpdating(true)
+        setPostId(id)
+    }
+
+    const update = async() => {
+        try {
+            const { data } = await axios.put(`/api/posts/${postId}`, {
+                title: newTitle,
+                content: newContent
+            })
+            alert(JSON.stringify(data))
+            setIsUpdating(false)
+            window.location.reload(true)
+        } catch (error) {
+            alert(error.response.data.message)
+            setIsUpdating(false)
         }
     }
 
@@ -32,6 +56,23 @@ export default function Posts() {
 
     return (
         <div className="input-container">
+            {isUpdating && 
+                <div>
+                    <h2>You can update here:</h2>
+                    <input 
+                        placeholder='set new title'
+                        value={newTitle}
+                        onChange={(e) => setNewTitle(e.target.value)}
+                    />
+                    <input
+                        placeholder='set new content'
+                        value={newContent}
+                        onChange={(e) => setNewContent(e.target.value)}
+                    />
+                    <button onClick={update}>finish updating</button>
+                
+                </div> 
+            }
             <h1 className='text'>MY POSTS </h1> 
             <h2><NavLink to="/allposts">SEE ALL POSTS</NavLink></h2>
             <NewPost />
@@ -42,6 +83,7 @@ export default function Posts() {
                 <h2>{content}</h2>
                 <h4>{createdAt.toString()}</h4>
                 <button onClick={() => deleteMyPost(id)}>delete</button>
+                <button onClick={() => toUpdateMode(id)}>update</button>
             </div>
         ))}
         </ul>
