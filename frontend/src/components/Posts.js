@@ -69,18 +69,36 @@ export default function Posts() {
             {isUpdating && 
                 <div>
                     <h2>You can update here:</h2>
+                    <p>
                     <input 
+                        className='new-title-input'
                         placeholder='set new title'
                         value={newTitle}
                         onChange={(e) => setNewTitle(e.target.value)}
                     />
+                    </p>
+                    <p>
                     <input
+                        className='new-content-input'
                         placeholder='set new content'
                         value={newContent}
                         onChange={(e) => setNewContent(e.target.value)}
                     />
-                    <button onClick={discard}>discard changes</button>
-                    <button onClick={update}>finish updating</button>
+                    </p>
+                    <p>
+                    <button 
+                        className='discard-button' 
+                        onClick={discard}>
+                            discard changes
+                    </button>
+                    </p>
+                    <p>
+                    <button 
+                        className='finish-updating-button' 
+                        onClick={update}>
+                            finish updating
+                    </button>
+                    </p>
                 
                 </div> 
             }
@@ -93,8 +111,16 @@ export default function Posts() {
                 <h1>{title}</h1>
                 <h2>{content}</h2>
                 <h4>{createdAt.toString()}</h4>
-                <button onClick={() => deleteMyPost(id)}>delete</button>
-                <button onClick={() => toUpdateMode(id)}>update</button>
+                <button 
+                    className="delete-button" 
+                    onClick={() => deleteMyPost(id)}>
+                        delete
+                </button>
+                <button 
+                    className="update-button" 
+                    onClick={() => toUpdateMode(id)}>
+                        update
+                </button>
             </div>
         ))}
         </ul>

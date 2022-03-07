@@ -20,8 +20,8 @@ export default function Posts() {
 
     return(
         <div className="input-container">
-            <h1 className='text'>ALL POSTS </h1> 
-            <h2><NavLink to="/posts">BACK TO MY POSTS</NavLink></h2>
+            <h1 className="text">ALL POSTS </h1> 
+            <h2 className="back-to-my-posts"><NavLink to="/posts">BACK TO MY POSTS</NavLink></h2>
         <ul>
         {myPosts.map(({ title,content,createdAt, _id: id }) => (
             <div key={id} className = "post-frame">

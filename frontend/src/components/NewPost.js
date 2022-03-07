@@ -25,10 +25,11 @@ export default function Posts() {
     }
 
     return (
-        <div className="new-post">
+        <div className="new-post-text">
             <h2>New Post:</h2>
             <p>
-            <input 
+            <input
+                className="title-input" 
                 placeholder="title" 
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -36,12 +37,17 @@ export default function Posts() {
             </p>
             <p>
             <input 
+                className="content-input"
                 placeholder="content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
             />
             </p>
-            <button onClick={post}>Post</button>
+            <button 
+                className="post-button" 
+                onClick={post}>
+                    Post
+            </button>
         </div>
     )
 }
