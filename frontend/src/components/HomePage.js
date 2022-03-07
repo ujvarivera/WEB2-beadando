@@ -4,8 +4,7 @@ import useAxios from "../hooks/useAxios";
 import Loading from "./Loading";
 
 export default function HomePage() {
-  const char = "b";
-  const URL = "https://www.themealdb.com/api/json/v1/1/search.php?f=" + char;
+  const URL = "/api/meals";
 
   const { data: mealData, loaded } = useAxios(URL);
 

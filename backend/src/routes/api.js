@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import {register, login, logout} from '../controllers/authController.js'
+import { getAllMeals, getSearchedMeal } from '../controllers/mealsController.js'
 import {getMyPosts, post, allPosts, updatePost, deletePost} from '../controllers/postController.js'
 import authMW from '../middlewares/authMW.js'
 
@@ -19,5 +20,7 @@ router.post('/posts', authMW, post)
 router.put('/posts/:id', authMW, updatePost)
 router.delete('/posts/:id', authMW, deletePost)
 
+router.get('/meals', getAllMeals)
+router.get('/meals/:name', getSearchedMeal)
 
 export default router

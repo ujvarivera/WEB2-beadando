@@ -7,6 +7,13 @@ export default function Posts() {
 
     const post = async() => {
         try {
+            if (title === "") {
+                alert("title missing")
+                return
+            } else if (content === "") {
+                alert("content is missing")
+                return
+            }
             const { data } = await axios.post('/api/posts', {
               title,
               content

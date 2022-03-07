@@ -37,6 +37,10 @@ export default function Posts() {
 
     const update = async() => {
         try {
+            if (newTitle === "" || newContent === "") {
+                alert("title or content is missing")
+                return
+            }
             const { data } = await axios.put(`/api/posts/${postId}`, {
                 title: newTitle,
                 content: newContent
@@ -48,6 +52,12 @@ export default function Posts() {
             alert(error.response.data.message)
             setIsUpdating(false)
         }
+    }
+
+    const discard = () => {
+        setIsUpdating(false)
+        setNewContent("")
+        setNewTitle("")
     }
 
     useEffect(() => {
@@ -69,6 +79,7 @@ export default function Posts() {
                         value={newContent}
                         onChange={(e) => setNewContent(e.target.value)}
                     />
+                    <button onClick={discard}>discard changes</button>
                     <button onClick={update}>finish updating</button>
                 
                 </div> 

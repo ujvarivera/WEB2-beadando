@@ -6,7 +6,7 @@ import Loading from "./Loading";
 import HomePage from "./HomePage";
 
 export default function SearchingMeals() {
-  const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+  const url = "/api/meals/";
   const [foodName, setFoodName] = useState("");
   const [foodUrl, setFoodUrl] = useState("");
 

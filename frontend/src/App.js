@@ -46,8 +46,7 @@ const App = () => {
         password,
       })
       setLoginErrorMessage('OK')
-      axios.defaults.headers.authorization = `Bearer ${data.token}` // ????
-      //axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+      axios.defaults.headers.authorization = `Bearer ${data.token}`
       window.localStorage.setItem('jwt', data.token) 
       history.push('/profile')
     } catch (error) {
@@ -74,8 +73,7 @@ const App = () => {
   useEffect(() => {
     const initialize = async () => {
       const token = window.localStorage.getItem('jwt')
-      axios.defaults.headers.authorization = `Bearer ${token}` //????
-      //axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      axios.defaults.headers.authorization = `Bearer ${token}`
       if (token) {
        setInit(true)
      }

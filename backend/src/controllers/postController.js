@@ -7,8 +7,12 @@ export const getMyPosts = async(req, res) => {
 
 export const post = async(req, res) => {
     const { title, content } = req.body
-    const created = await Post.create({ title, content, createdBy: req.user })
-    res.json(created)
+    try {
+        const created = await Post.create({ title, content, createdBy: req.user })
+        res.json(created)
+    } catch (error) {
+        res.json(error.message)
+    }
 }
 
 export const allPosts = async(req, res) => {
@@ -17,10 +21,14 @@ export const allPosts = async(req, res) => {
 }
 
 export const updatePost = async (req, res) => {
-    const { id } = req.params
-    const data = req.body
-    const updated = await Post.findByIdAndUpdate(id, data, { new: true })
-    res.json(updated)
+    try {
+        const { id } = req.params
+        const data = req.body
+        const updated = await Post.findByIdAndUpdate(id, data, { new: true })
+        res.json(updated)
+    } catch (error) {
+        res.json(error.message)
+    }
 }
 
 export const deletePost = async (req, res) => {
