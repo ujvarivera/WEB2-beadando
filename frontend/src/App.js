@@ -47,7 +47,8 @@ const App = () => {
       })
       setLoginErrorMessage('OK')
       axios.defaults.headers.authorization = `Bearer ${data.token}`
-      window.localStorage.setItem('jwt', data.token) 
+      window.localStorage.setItem('jwt', data.token)
+      window.localStorage.setItem('username', username)  
       history.push('/profile')
     } catch (error) {
       setLoginErrorMessage(error.response.data.message)
@@ -120,7 +121,7 @@ const App = () => {
 
         <Route exact path="/profile">
             {init ? 
-              <Profile username={username}/> 
+              <Profile username={window.localStorage.getItem('username')}/> 
               : <Redirect from="/profile" to="/login" />
               }
           </Route>

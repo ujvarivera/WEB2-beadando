@@ -3,6 +3,7 @@ export default function Profile({username}) {
 
     const logout = async() => {
         window.localStorage.removeItem('jwt')
+        window.localStorage.removeItem('username')
         window.location.reload(true)
       }
 
