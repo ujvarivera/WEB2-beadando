@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Route, Switch, Redirect } from "react-router-dom"
-import {useHistory} from 'react-router-dom'
+import axios from 'axios'
 
 import NavBar from "./components/header/NavBar"
 import Favourites from "./components/meals/Favourites"
 import FavouritesContextProvider from "./context/FavouritesContext"
+import UserDataProvider from "./context/UserContext"
 import ErrorBoundary from "./components/ErrorBoundary"
 import SearchingMeals from "./components/meals/SearchingMeals"
 import Login from './components/users/Login'
@@ -18,12 +18,6 @@ const App = () => {
   const [connected, setConnected] = useState(false)
   const [error, setError] = useState()
   const [init, setInit] = useState(false)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [loginErrorMessage, setLoginErrorMessage] = useState('')
-  const [registerErrorMessage, setRegisterErrorMessage] = useState('')
-
-  const history = useHistory()
   
   useEffect(() => {
     const getData = async () => {
@@ -38,38 +32,6 @@ const App = () => {
     }
     getData()
   }, [])
-
-  const login = async () => {
-    try {
-      const { data } = await axios.post('/api/login', {
-        username,
-        password,
-      })
-      setLoginErrorMessage('OK')
-      axios.defaults.headers.authorization = `Bearer ${data.token}`
-      window.localStorage.setItem('jwt', data.token)
-      window.localStorage.setItem('username', username)  
-      history.push('/profile')
-    } catch (error) {
-      setLoginErrorMessage(error.response.data.message)
-    }
-  }
-
-  const register = async() => {
-    try {
-      const { data } = await axios.post('/api/signup', {
-        username,
-        password,
-      }
-      )
-      setRegisterErrorMessage('OK')
-      alert('Your register was successful')
-      history.push('/login')
-
-    } catch (error) {
-      setRegisterErrorMessage(error.response.data.message)
-    }
-  }
 
   useEffect(() => {
     const initialize = async () => {
@@ -88,6 +50,7 @@ const App = () => {
   return (
     <ErrorBoundary>
     <FavouritesContextProvider>
+      <UserDataProvider>
       <NavBar /> 
       <Switch>
 
@@ -100,11 +63,11 @@ const App = () => {
         </Route>
 
         <Route exact path="/login">
-          <Login username={username} setUsername={setUsername} password={password} setPassword={setPassword} login={login} error={loginErrorMessage}/>
+          <Login />
         </Route>
 
         <Route exact path="/register">
-          <Register username={username} setUsername={setUsername} password={password} setPassword={setPassword} register={register} error={registerErrorMessage}/>
+          <Register />
         </Route>
 
         <Route exact path="/posts">
@@ -129,6 +92,7 @@ const App = () => {
         <Redirect from="*" to="/" />
 
       </Switch>
+      </UserDataProvider>
     </FavouritesContextProvider>
   </ErrorBoundary>
   )

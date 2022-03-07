@@ -1,4 +1,7 @@
-export default function Auth({username, setUsername, password, setPassword}) {
+import useUserData from "../../hooks/useUserData"
+
+export default function Auth() {
+  const {username, setUsername, password, setPassword } = useUserData()
     return(
         <div className="input-container">
         <h2>Username:</h2>
