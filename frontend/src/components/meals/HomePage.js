@@ -1,7 +1,7 @@
 import React from "react";
 import Meal from "./Meal";
-import useAxios from "../hooks/useAxios";
-import Loading from "./Loading";
+import useAxios from "../../hooks/useAxios";
+import Loading from "../Loading";
 
 export default function HomePage() {
   const URL = "/api/meals";

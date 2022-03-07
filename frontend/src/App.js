@@ -3,16 +3,16 @@ import axios from 'axios'
 import { Route, Switch, Redirect } from "react-router-dom"
 import {useHistory} from 'react-router-dom'
 
-import NavBar from "./components/NavBar"
-import Favourites from "./components/Favourites"
+import NavBar from "./components/header/NavBar"
+import Favourites from "./components/meals/Favourites"
 import FavouritesContextProvider from "./context/FavouritesContext"
 import ErrorBoundary from "./components/ErrorBoundary"
-import SearchingMeals from "./components/SearchingMeals"
-import Login from './components/Login'
-import Register from './components/Register'
-import Profile from './components/Profile'
-import Posts from './components/Posts'
-import AllPosts from './components/AllPosts'
+import SearchingMeals from "./components/meals/SearchingMeals"
+import Login from './components/users/Login'
+import Register from './components/users/Register'
+import Profile from './components/users/Profile'
+import Posts from './components/posts/Posts'
+import AllPosts from './components/posts/AllPosts'
 
 const App = () => {
   const [connected, setConnected] = useState(false)

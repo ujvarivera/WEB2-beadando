@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Meal from "./Meal";
 import Input from "./Input";
-import useAxios from "../hooks/useAxios";
-import Loading from "./Loading";
+import useAxios from "../../hooks/useAxios";
+import Loading from "../Loading";
 import HomePage from "./HomePage";
 
 export default function SearchingMeals() {

@@ -1,5 +1,5 @@
 import Meal from "./Meal";
-import useFavourites from "../hooks/useFavourites";
+import useFavourites from "../../hooks/useFavourites";
 
 export default function Favourites() {
   const { favourites, reset } = useFavourites();

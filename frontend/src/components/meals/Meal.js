@@ -1,4 +1,4 @@
-import useFavourites from "../hooks/useFavourites";
+import useFavourites from "../../hooks/useFavourites";
 
 export default function Meal({ data }) {
   const { favourites, like, unlike } = useFavourites();
