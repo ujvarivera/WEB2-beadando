@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-export default function Posts() {
+export default function NewPosts() {
+    /* Return a form which you can write new posts with */
+    
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 

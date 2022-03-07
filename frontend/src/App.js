@@ -11,7 +11,7 @@ import SearchingMeals from "./components/meals/SearchingMeals"
 import Login from './components/users/Login'
 import Register from './components/users/Register'
 import Profile from './components/users/Profile'
-import Posts from './components/posts/Posts'
+import MyPosts from './components/posts/MyPosts'
 import AllPosts from './components/posts/AllPosts'
 
 const App = () => {
@@ -51,7 +51,9 @@ const App = () => {
     <ErrorBoundary>
     <FavouritesContextProvider>
       <UserDataProvider>
+
       <NavBar /> 
+
       <Switch>
 
         <Route exact path="/">
@@ -72,7 +74,7 @@ const App = () => {
 
         <Route exact path="/posts">
           {init && 
-            <Posts /> 
+            <MyPosts /> 
           }
         </Route>
 
@@ -84,7 +86,7 @@ const App = () => {
 
         <Route exact path="/profile">
             {init ? 
-              <Profile username={window.localStorage.getItem('username')}/> 
+              <Profile /> 
               : <Redirect from="/profile" to="/login" />
               }
           </Route>
@@ -92,6 +94,7 @@ const App = () => {
         <Redirect from="*" to="/" />
 
       </Switch>
+      
       </UserDataProvider>
     </FavouritesContextProvider>
   </ErrorBoundary>

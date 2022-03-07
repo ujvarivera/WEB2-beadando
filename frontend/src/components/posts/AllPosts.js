@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { NavLink } from "react-router-dom"
+import Post from './Post'
 
-export default function Posts() {
-    const [myPosts, setMyPosts] = useState([])
+export default function AllPosts() {
+    /* Return every posts */
+    
+    const [allPosts, setAllPosts] = useState([])
 
-    const getMyPosts = async() => {
+    const getAllPosts = async() => {
         try {
             const { data: posts } = await axios.get('/api/posts')
-            setMyPosts(posts)
+            setAllPosts(posts)
         } catch (error) {
             console.log(error.response.data.message)
         }
   }
 
     useEffect(() => {
-        getMyPosts()
+        getAllPosts()
     }, [])
 
     return(
@@ -23,12 +26,8 @@ export default function Posts() {
             <h1 className="text">ALL POSTS </h1> 
             <h2 className="back-to-my-posts"><NavLink to="/posts">BACK TO MY POSTS</NavLink></h2>
         <ul>
-        {myPosts.map(({ title,content,createdAt, _id: id }) => (
-            <div key={id} className = "post-frame">
-                <h1>{title}</h1>
-                <h2>{content}</h2>
-                <h4>{createdAt.toString()}</h4>
-            </div>
+        {allPosts.map(({ title, content, createdAt, _id: id }) => (
+            <Post title={title} content={content} createdAt={createdAt} id={id}/>
         ))}
         </ul>
         </div>
