@@ -13,6 +13,8 @@ export default function MyPosts() {
     const [newTitle, setNewTitle] = useState('')
     const [newContent, setNewContent] = useState('')
     const [postId, setPostId] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+
 
     const getMyPosts = async() => {
         try {
@@ -26,7 +28,7 @@ export default function MyPosts() {
     const update = async() => {
         try {
             if (newTitle === "" || newContent === "") {
-                alert("title or content is missing")
+                setErrorMessage("title and/or content is missing")
                 return
             }
             const { data } = await axios.put(`/api/posts/${postId}`, {
@@ -35,9 +37,10 @@ export default function MyPosts() {
             })
             alert(JSON.stringify(data))
             setIsUpdating(false)
+            setErrorMessage("")
             window.location.reload(true)
         } catch (error) {
-            alert(error.response.data.message)
+            setErrorMessage(error.response.data.message)
             setIsUpdating(false)
         }
     }
@@ -51,6 +54,7 @@ export default function MyPosts() {
         setIsUpdating(false)
         setNewContent("")
         setNewTitle("")
+        setErrorMessage("")
     }
 
     useEffect(() => {
@@ -67,6 +71,9 @@ export default function MyPosts() {
                     setNewContent = {setNewContent} 
                     discard= {discard} 
                     update = {update}/>
+            }
+            {
+                errorMessage && <h2 className="incorrect">{errorMessage}</h2>
             }
             <h1 className='text'>MY POSTS </h1> 
             <h2><NavLink to="/allposts">SEE ALL POSTS</NavLink></h2>

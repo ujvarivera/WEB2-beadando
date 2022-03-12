@@ -6,14 +6,12 @@ export default function NewPosts() {
     
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
 
     const post = async() => {
         try {
-            if (title === "") {
-                alert("title missing")
-                return
-            } else if (content === "") {
-                alert("content is missing")
+            if (title === "" || content === "") {
+                setErrorMessage("title and/or content is missing")
                 return
             }
             const { data } = await axios.post('/api/posts', {
@@ -21,8 +19,9 @@ export default function NewPosts() {
               content
             })
             window.location.reload(true)
+            setErrorMessage("")
         } catch (error) {
-            alert(error.response.data.message)
+            setErrorMessage(error.response.data.message)
         }
     }
 
@@ -50,6 +49,9 @@ export default function NewPosts() {
                 onClick={post}>
                     Post
             </button>
+            {
+                errorMessage && <h2 className="incorrect">{errorMessage}</h2>
+            }
         </div>
     )
 }
