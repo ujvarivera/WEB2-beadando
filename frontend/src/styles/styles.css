@@ -207,3 +207,19 @@
 .back-to-my-posts {
   margin-bottom: 40px;
 }
+
+.profile-pic {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 5px solid #5c0c02;
+  filter: drop-shadow(0 0 8px #f10303);
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.preview {
+  width: 500px;
+  height: 500px;
+  border: 5px solid #5c0c02;
+}

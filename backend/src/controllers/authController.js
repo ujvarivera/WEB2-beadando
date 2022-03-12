@@ -43,15 +43,3 @@ export const login = async(req, res) => {
         console.log('unsuccessful login')
     }
 }
-
-export const logout = (req, res) => {
-    /*
-    res.cookie('jwt', '', {maxAge: 1})
-    res.redirect('/api/login')
-    */
-
-    /*
-   res.clearCookie('jwt')
-   res.redirect('/api/login')
-   */
-}
