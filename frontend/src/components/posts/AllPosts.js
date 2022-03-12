@@ -26,8 +26,8 @@ export default function AllPosts() {
             <h1 className="text">ALL POSTS </h1> 
             <h2 className="back-to-my-posts"><NavLink to="/posts">BACK TO MY POSTS</NavLink></h2>
         <ul>
-        {allPosts.map(({ title, content, createdAt, _id: id }) => (
-            <Post title={title} content={content} createdAt={createdAt} id={id}/>
+        {allPosts.map(({ title, content, createdAt, _id: id, createdBy }) => (
+            <Post key={id} title={title} content={content} createdAt={createdAt} id={id} createdBy={createdBy}/>
         ))}
         </ul>
         </div>

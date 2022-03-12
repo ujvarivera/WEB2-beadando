@@ -73,7 +73,7 @@ export default function MyPosts() {
             <NewPost />
         <ul>
         {myPosts.map(({ title,content,createdAt, _id: id }) => (
-            <MyPost title={title} content={content} createdAt={createdAt} id={id} toUpdateMode={toUpdateMode}/> 
+            <MyPost key={id} title={title} content={content} createdAt={createdAt} id={id} toUpdateMode={toUpdateMode}/> 
         ))}
         </ul>
         </div>

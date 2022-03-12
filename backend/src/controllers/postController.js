@@ -16,7 +16,7 @@ export const post = async(req, res) => {
 }
 
 export const allPosts = async(req, res) => {
-    const data = await Post.find()
+    const data = await Post.find().populate("createdBy")
     res.json(data)
 }
 

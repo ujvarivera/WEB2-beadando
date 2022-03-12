@@ -85,7 +85,7 @@ const App = () => {
         </Route>
 
         <Route exact path="/profile">
-            {init ? 
+            {init || window.localStorage.getItem('jwt') ? 
               <Profile /> 
               : <Redirect from="/profile" to="/login" />
               }
