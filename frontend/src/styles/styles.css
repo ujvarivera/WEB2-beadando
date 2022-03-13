@@ -114,7 +114,9 @@
 .delete-button,
 .update-button,
 .discard-button,
-.finish-updating-button {
+.finish-updating-button,
+.delete-avatar,
+.upload-avatar {
   width: 100px;
   height: 40px;
   font-size: 20px;
@@ -129,12 +131,9 @@
 }
 
 .discard-button,
-.finish-updating-button {
+.finish-updating-button,
+.delete-avatar {
   width: 200px;
-}
-
-.logout-button {
-  margin-top: 200px;
 }
 
 .login-button:hover,
@@ -144,10 +143,13 @@
 .delete-button:hover,
 .update-button:hover,
 .discard-button:hover,
-.finish-updating-button:hover {
+.finish-updating-button:hover,
+.delete-avatar:hover,
+.upload-avatar:hover {
   background: #ffcccc;
 }
 
+/* Input fields */
 .username-input, 
 .password-input {
   margin: 0 auto;
@@ -175,12 +177,19 @@
   height: 100px;
 }
 
+/* Texts */
 .login-text,
 .register-text,
 .text {
   margin-top: 200px;
   text-align: center;
   color: red;
+}
+
+.profile-text {
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* error messages */
@@ -208,18 +217,19 @@
   margin-bottom: 40px;
 }
 
-.profile-pic {
+/* Profile site */
+.profile-pic,
+.preview {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  border: 5px solid #5c0c02;
+  border: 15px solid #5c0c02;
   filter: drop-shadow(0 0 8px #f10303);
   margin-top: 100px;
   margin-bottom: 100px;
 }
 
-.preview {
-  width: 500px;
-  height: 500px;
-  border: 5px solid #5c0c02;
+.profile {
+  margin-top: 100px;
+  text-align: center;
 }

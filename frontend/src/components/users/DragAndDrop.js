@@ -32,21 +32,22 @@ const DragAndDrop = () => {
 
   return (
     <div>
+      <h1 className="profile-text">Choose a profile pic!</h1>
       <input
         type="file"
         accept="image/png image/jpg"
         onChange={(e) => setFile(e.target.files[0])}
       />
 
-      <button onClick={upload}>upload</button>
+      <button className="upload-avatar" onClick={upload}>upload</button>
 
-      {Math.round(progress)}%
+      <h3>{Math.round(progress)}%</h3>
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p>Drop it here!</p>
+          <p className="profile-text">Drop it here!</p>
         ) : (
-          <p>Drag and drop some files here, or click to select files.</p>
+          <p className="profile-text">Drag and drop some files here, or click to select files.</p>
         )}
       </div>
     

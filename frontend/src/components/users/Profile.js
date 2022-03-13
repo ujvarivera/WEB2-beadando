@@ -35,14 +35,18 @@ export default function Profile() {
     }, [])
 
     return(
-        <div className="input-container">
+        <div className="profile">
             <h1 className='text'>Hello {window.localStorage.getItem('username')}</h1>
             <button className="logout-button" onClick={logout}>logout</button>
             { 
             data ?
             <div>
-                <img className="profile-pic" src={data.avatar} alt='my avatar'/>
-                <button onClick= { () => deleteAvatar(data._id) }>Delete my avatar</button>
+                <p>
+                    <img className="profile-pic" src={data.avatar} alt='my avatar'/>
+                </p>
+                <p>
+                    <button className="delete-avatar" onClick= { () => deleteAvatar(data._id) }>Delete my avatar</button>
+                </p>
             </div> :
             <DragAndDrop />
             }
