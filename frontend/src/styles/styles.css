@@ -132,7 +132,9 @@
 
 .discard-button,
 .finish-updating-button,
-.delete-avatar {
+.delete-avatar,
+.logout-button,
+.upload-avatar {
   width: 200px;
 }
 
@@ -192,6 +194,10 @@
   margin-bottom: 20px;
 }
 
+.post-username {
+  color:#af2512;
+}
+
 /* error messages */
 .incorrect {
   color: red;
@@ -201,7 +207,8 @@
 
 .post-frame,
 .new-post {
-  border:2px solid red;
+  border:2px solid rgb(136, 24, 24);
+  border-bottom-width: 10px;
   width: 600px;
   text-align: center;
   margin: 0 auto;

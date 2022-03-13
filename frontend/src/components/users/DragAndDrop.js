@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useDropzone } from 'react-dropzone'
+import { RiUploadCloudFill } from 'react-icons/ri'
 
 const DragAndDrop = () => {
   const [file, setFile] = useState()
@@ -39,7 +40,9 @@ const DragAndDrop = () => {
         onChange={(e) => setFile(e.target.files[0])}
       />
 
-      <button className="upload-avatar" onClick={upload}>upload</button>
+      <button className="upload-avatar" onClick={upload}>
+        <b>Upload</b> <RiUploadCloudFill/>
+      </button>
 
       <h3>{Math.round(progress)}%</h3>
       <div {...getRootProps()}>

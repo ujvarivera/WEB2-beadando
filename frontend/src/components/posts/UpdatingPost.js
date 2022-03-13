@@ -1,3 +1,4 @@
+import {FaCheck, FaBackspace} from "react-icons/fa";
 
 export default function UpdatingPost({ newTitle, setNewTitle, newContent, setNewContent, discard, update }) {
     /* Updating form of a post */
@@ -25,14 +26,14 @@ export default function UpdatingPost({ newTitle, setNewTitle, newContent, setNew
         <button 
             className='discard-button' 
             onClick={discard}>
-                discard changes
+                <b>Discard</b> <FaBackspace />
         </button>
         </p>
         <p>
         <button 
             className='finish-updating-button' 
             onClick={update}>
-                finish updating
+                <b>Finish</b> <FaCheck />
         </button>
         </p>
     </div>         

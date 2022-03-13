@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { FaEdit, FaTrashAlt } from "react-icons/fa"
 
 export default function MyPost({ id, title, content, createdAt, toUpdateMode }) {
     /* Return one post which is mine, with delete and updating buttons. */
@@ -32,12 +33,12 @@ export default function MyPost({ id, title, content, createdAt, toUpdateMode }) 
             <button 
                 className="delete-button" 
                 onClick={() => deleteMyPost(id)}>
-                    delete
+                    <FaTrashAlt />
             </button>
             <button 
                 className="update-button" 
                 onClick={() => toUpdateMode(id)}>
-                    update
+                    <FaEdit />
              </button>
         </div>
     )

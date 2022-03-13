@@ -47,7 +47,7 @@ export default function NewPosts() {
             <button 
                 className="post-button" 
                 onClick={post}>
-                    Post
+                    <b>Post</b>
             </button>
             {
                 errorMessage && <h2 className="incorrect">{errorMessage}</h2>

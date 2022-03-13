@@ -1,13 +1,6 @@
 export default function Post({ id, title, content, createdAt, createdBy }) {
     /* Return one post */
     const date = new Date(createdAt)
-    /*
-    const year = date.getFullYear()
-    const month = date.toLocaleString("en-EN", { month: "2-digit" })
-    const day = date.toLocaleString("en-EN", { day: "2-digit" })
-    const hour = date.getHours()
-    const min = date.getMinutes()
-    */
 
     const hungarianDate = date.toLocaleString('hu-HU', { 
         year: 'numeric',
@@ -21,7 +14,7 @@ export default function Post({ id, title, content, createdAt, createdBy }) {
         <div key={id} className = "post-frame">
             <h1>{title}</h1>
             <h2>{content}</h2>
-            <h4>user: {createdBy.username}</h4>
+            <h3 className="post-username">user: {createdBy.username}</h3>
             <h4>{hungarianDate}</h4>
         </div>
     )

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import DragAndDrop from './DragAndDrop'
+import { FiLogOut } from "react-icons/fi"
+import { MdDeleteForever } from "react-icons/md"
 
 export default function Profile() {
     const [data, setData] = useState('')
@@ -36,8 +38,10 @@ export default function Profile() {
 
     return(
         <div className="profile">
-            <h1 className='text'>Hello {window.localStorage.getItem('username')}</h1>
-            <button className="logout-button" onClick={logout}>logout</button>
+            <h1 className='text'>Hello {window.localStorage.getItem('username')}!</h1>
+            <button className="logout-button" onClick={logout}>
+                <b>Logout</b> <FiLogOut />
+            </button>
             { 
             data ?
             <div>
@@ -45,7 +49,9 @@ export default function Profile() {
                     <img className="profile-pic" src={data.avatar} alt='my avatar'/>
                 </p>
                 <p>
-                    <button className="delete-avatar" onClick= { () => deleteAvatar(data._id) }>Delete my avatar</button>
+                    <button className="delete-avatar" onClick= { () => deleteAvatar(data._id) }>
+                        <b>Delete my pic</b> <MdDeleteForever/>
+                    </button>
                 </p>
             </div> :
             <DragAndDrop />

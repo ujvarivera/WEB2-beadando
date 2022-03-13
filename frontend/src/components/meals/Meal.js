@@ -1,4 +1,5 @@
 import useFavourites from "../../hooks/useFavourites";
+import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 
 export default function Meal({ data }) {
   const { favourites, like, unlike } = useFavourites();
@@ -15,11 +16,11 @@ export default function Meal({ data }) {
         </h2>
         {favourites.find((fav) => fav.idMeal === data.idMeal) ? (
           <button className="fav" onClick={() => unlike(data)}>
-            Unlike
+            <FcLike size={25} />
           </button>
         ) : (
           <button className="fav" onClick={() => like(data)}>
-            Like
+            <FcLikePlaceholder size={25} />
           </button>
         )}
       </div>
